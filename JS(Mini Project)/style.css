@@ -1,0 +1,255 @@
+/* ===== Reset default styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Page Background ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  position: relative;
+  overflow: hidden; /* keep shapes inside */
+}
+
+/* Gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating glowing shapes */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: floatShape 20s linear infinite, glowColor 8s ease-in-out infinite;
+  z-index: 0; /* behind container */
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+body::before {
+  top: -100px;
+  left: -100px;
+}
+
+body::after {
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 10s, 4s; /* offset both animations */
+}
+
+/* Floating movement */
+@keyframes floatShape {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(40px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Glowing & color change */
+@keyframes glowColor {
+  0% {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 40px rgba(255, 200, 200, 0.4);
+  }
+  25% {
+    background: rgba(255, 192, 203, 0.12);
+    box-shadow: 0 0 50px rgba(255, 150, 200, 0.5);
+  }
+  50% {
+    background: rgba(173, 216, 230, 0.12);
+    box-shadow: 0 0 60px rgba(150, 200, 255, 0.5);
+  }
+  75% {
+    background: rgba(255, 255, 224, 0.12);
+    box-shadow: 0 0 50px rgba(255, 255, 150, 0.5);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 40px rgba(255, 200, 200, 0.4);
+  }
+}
+
+
+/* Floating animation */
+@keyframes floatShape {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(40px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Keep the container above shapes */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* ===== Main Container ===== */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  width: 350px;
+  text-align: center;
+}
+
+/* ===== Heading ===== */
+h1 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* ===== Input Section ===== */
+input {
+  padding: 12px;
+  width: 70%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+button {
+  padding: 12px 15px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: #ff7f50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #e5673d;
+  transform: translateY(-2px);
+}
+
+/* ===== Task List ===== */
+ul {
+  list-style: none;
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+li .delete {
+  background: #ff4d4d;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+li .delete:hover {
+  background: #d93636;
+  transform: scale(1.05);
+}
+
+/* ===== Scrollbar Styling ===== */
+ul::-webkit-scrollbar {
+  width: 6px;
+}
+ul::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
+}
+
+/* ===== Animations ===== */
+@keyframes slideIn {
+  from {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===== Responsive Design ===== */
+
+/* For tablets (screen ≤ 768px) */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 80%;
+    padding: 15px 20px;
+  }
+
+  input {
+    width: 65%;
+    font-size: 13px;
+  }
+
+  button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* For small phones (screen ≤ 480px) */
+@media screen and (max-width: 480px) {
+  body {
+    padding-top: 20px;
+  }
+
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  li {
+    font-size: 14px;
+  }
+
+  li .delete {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+}
+
